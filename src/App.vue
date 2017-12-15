@@ -6,7 +6,6 @@
           <action
               :action  ="action"
               :isAdmin ="isAdmin"
-              v-if = "action.active == true"
               v-on:remove="deleteAction"
               v-on:update="updateAction"
           >

@@ -47,7 +47,7 @@
         <!--<material-picker v-model="colors"></material-picker> -->
         <v-card-actions>
           <v-btn color="primary" flat @click.stop="$emit('close')">Закрыть</v-btn>
-          <v-btn color="primary" flat @click.stop="$emit('save', {id: id, name: name, describe: describe, url: url, color: color, subColor: subColor})">ОК</v-btn>
+          <v-btn color="primary" flat @click.stop="$emit('save', {id: id, name: name, describe: describe, url: url, color: color, subColor: subColor, active: true})">ОК</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

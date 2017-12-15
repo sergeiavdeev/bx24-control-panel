@@ -18,6 +18,7 @@ export default[
     url: "http://ya.ru"
   },
   {
+    id: 3,
     active: false,
   },
   {
@@ -30,6 +31,7 @@ export default[
     url: ""
   },
   {
+    id: 5,
     active: false,
   },
   {
@@ -42,15 +44,19 @@ export default[
     url: ""
   },
   {
+    id: 7,
     active: false,
   },
   {
+    id: 8,
     active: false,
   },
   {
+    id: 9,
     active: false,
   },
   {
+    id: 10,
     active: false,
   },
   {
@@ -63,6 +69,7 @@ export default[
     url: ""
   },
   {
+    id: 12,
     active: false,
   }
 ];
