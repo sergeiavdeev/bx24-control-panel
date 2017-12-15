@@ -8,6 +8,7 @@
               :isAdmin ="isAdmin"
               v-on:remove="deleteAction"
               v-on:update="updateAction"
+              v-on:drag="drag"
           >
           </action>
         </v-flex>
@@ -45,7 +46,43 @@
             return;
           }
         })
-      }
+      },
+      drag (src) {
+
+        console.log('Притащили ' + src.from + " в " + src.to);
+
+        var idFrom = src.from;
+        var idTo = src.to;
+
+        var actionFrom, actionTo;
+
+        for (var i = 0; i < this.actions.length; i++) {
+
+          if (this.actions[i].id == idFrom) {
+            actionFrom = this.actions[i];
+          }
+          if (this.actions[i].id == idTo) {
+            actionTo = this.actions[i];
+          }
+
+          if (actionFrom && actionTo) {
+            break;
+          }
+        }
+
+        for (var key in actionFrom) {
+          if (key != 'id') {
+            actionTo[key] = actionFrom[key];
+          }
+        }
+
+        actionFrom.active = false;
+        actionFrom.name = "";
+        actionFrom.describe = "";
+        actionFrom.url = "";
+        actionFrom.color = "";
+        actionFrom.subColor = "";
+      },
     },
     components: {
       action
