@@ -34,7 +34,7 @@
                 data.map( (el) => {
                   this.actions.push({
                       id: el.ID,
-                      active: el.PROPERTY_VALUES.active,
+                      active: (el.PROPERTY_VALUES.active == "false" ? false : true),
                       name: el.PROPERTY_VALUES.name,
                       describe: el.PROPERTY_VALUES.describe,
                       color: el.PROPERTY_VALUES.color,
@@ -42,6 +42,7 @@
                       url: el.PROPERTY_VALUES.url
                   });
                 });
+                console.log(data);
             })
             .catch( (err) => {
                 this.actions = require('./Data').default;
