@@ -27,6 +27,27 @@
         actions: []
       }
     },
+    mounted () {
+        this.getActions()
+            .then( (data) =>{
+                this.actions = [];
+                data.map( (el) => {
+                  this.actions.push({
+                      id: el.ID,
+                      active: el.PROPERTY_VALUES.active,
+                      name: el.PROPERTY_VALUES.name,
+                      describe: el.PROPERTY_VALUES.describe,
+                      color: el.PROPERTY_VALUES.color,
+                      subColor: el.PROPERTY_VALUES.subColor,
+                      url: el.PROPERTY_VALUES.url
+                  });
+                });
+            })
+            .catch( (err) => {
+                this.actions = require('./Data').default;
+                console.log(err);
+            });
+    },
     methods: {
       deleteAction (id) {
         this.actions.map( (action) => {
@@ -83,12 +104,23 @@
         actionFrom.color = "";
         actionFrom.subColor = "";
       },
+      getActions () {
+
+          return new Promise((resolve, reject) => {
+              BX24.callMethod(
+                  'entity.item.get',
+                  {
+                      ENTITY: 'action'
+                  },
+                  function (result) {
+                      resolve(result.answer.result);
+                  }
+              );
+          });
+      }
     },
     components: {
       action
-    },
-    mounted () {
-      this.actions = require('./Data').default;
     }
   }
 

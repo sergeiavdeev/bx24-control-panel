@@ -2,11 +2,14 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: './src/main.js',
+  entry: {
+    app: './src/main.js',
+    install: './src/install.js'
+  },
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'build.js'
+    filename: '[name].js'
   },
   resolve: {
     extensions: ['.js', '.vue'],
