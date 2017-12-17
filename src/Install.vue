@@ -112,6 +112,24 @@
                             DETAIL_PICTURE: '',
                             NAME: 'Action',
                             PROPERTY_VALUES: {
+                                active: false,
+                                name: "",
+                                describe: "",
+                                color: "",
+                                subColor: "",
+                                url: ""
+                            },
+                            SECTION: 0
+                        }
+                    },
+                    {
+                        method: 'entity.item.add',
+                        params: {
+                            ENTITY: 'action',
+                            DATE_ACTIVE_FROM: new Date(),
+                            DETAIL_PICTURE: '',
+                            NAME: 'Action',
+                            PROPERTY_VALUES: {
                                 active: true,
                                 name: "Яндекс",
                                 describe: "Перейти на Яндекс",
@@ -136,24 +154,6 @@
                                 color: "blue",
                                 subColor: "",
                                 url: "http://pecom.ru"
-                            },
-                            SECTION: 0
-                        }
-                    },
-                    {
-                        method: 'entity.item.add',
-                        params: {
-                            ENTITY: 'action',
-                            DATE_ACTIVE_FROM: new Date(),
-                            DETAIL_PICTURE: '',
-                            NAME: 'Action',
-                            PROPERTY_VALUES: {
-                                active: false,
-                                name: "",
-                                describe: "",
-                                color: "",
-                                subColor: "",
-                                url: ""
                             },
                             SECTION: 0
                         }

@@ -28,7 +28,10 @@
       }
     },
     mounted () {
-        this.getActions()
+
+        this.isAdmin = BX24.isAdmin();
+
+        this.getActionsBX24()
             .then( (data) =>{
                 this.actions = [];
                 data.map( (el) => {
@@ -98,14 +101,30 @@
           }
         }
 
+        this.updateActionBX24(actionTo)
+            .then( (res) => {
+              console.log(res);
+            })
+            .catch( (err) => {
+              console.log(err);
+            });
+
         actionFrom.active = false;
         actionFrom.name = "";
         actionFrom.describe = "";
         actionFrom.url = "";
         actionFrom.color = "";
         actionFrom.subColor = "";
+
+        this.updateActionBX24(actionFrom)
+            .then( (res) => {
+                console.log(res);
+            })
+            .catch( (err) => {
+                console.log(err);
+            });
       },
-      getActions () {
+      getActionsBX24 () {
 
           return new Promise((resolve, reject) => {
               BX24.callMethod(
@@ -117,6 +136,31 @@
                       resolve(result.answer.result);
                   }
               );
+          });
+      },
+      updateActionBX24 (action) {
+
+          return new Promise((resolve, reject) => {
+              BX24.callMethod('entity.item.update', {
+                  ENTITY: 'action',
+                  ID: action.id,
+                  DATE_ACTIVE_FROM: new Date(),
+                  DETAIL_PICTURE: '',
+                  NAME: 'Action',
+                  PROPERTY_VALUES: {
+                      name: action.name,
+                      describe: action.describe,
+                      active: action.active,
+                      color: action.color,
+                      subColor: action.subColor,
+                      url: action.url
+                  },
+                  SECTION: 0
+              },
+              function (result) {
+                  console.log(result);
+                  resolve(result);
+              });
           });
       }
     },
