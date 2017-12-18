@@ -62,7 +62,18 @@
         this.actions.map( (action) => {
           if (action.id == id) {
             action.active = false;
-            return;
+            action.name = "";
+            action.describe = "";
+            action.url = "";
+            action.color = "";
+            action.subColor = "";
+            this.updateActionBX24(action)
+                .then( (res) => {
+                    console.log(res);
+                })
+                .catch( (err) => {
+                    console.log(err);
+                });
           }
         })
       },
