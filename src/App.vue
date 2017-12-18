@@ -30,7 +30,8 @@
     mounted () {
 
         if (window.BX24) {
-          this.isAdmin = BX24.isAdmin() == "true" ? true : false;
+          this.isAdmin = BX24.isAdmin();
+          console.log(BX24.isAdmin());
         }
 
         this.getActionsBX24()
@@ -177,7 +178,7 @@
                   SECTION: 0
               },
               function (result) {
-                  console.log(result);
+                  //console.log(result);
                   resolve(result);
               });
           });
