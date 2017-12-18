@@ -30,8 +30,10 @@
     mounted () {
 
         if (window.BX24) {
-          this.isAdmin = BX24.isAdmin();
-          console.log(BX24.isAdmin());
+          BX24.init( () => {
+              this.isAdmin = BX24.isAdmin();
+              console.log(BX24.isAdmin());
+          });
         }
 
         this.getActionsBX24()
