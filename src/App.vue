@@ -29,7 +29,9 @@
     },
     mounted () {
 
-        this.isAdmin = BX24.isAdmin();
+        if (window.BX24) {
+          this.isAdmin = BX24.isAdmin() == "true" ? true : false;
+        }
 
         this.getActionsBX24()
             .then( (data) =>{
@@ -62,12 +64,22 @@
         })
       },
       updateAction (action) {
+
+        this.updateActionBX24(action)
+          .then( (res) => {
+            console.log(res);
+          })
+          .catch( (err) => {
+            console.log(err);
+          });
+
         this.actions.map( (el) => {
           if (action.id == el.id) {
 
             for (var key in action) {
               el[key] = action[key];
             }
+
             return;
           }
         })
@@ -127,6 +139,9 @@
       getActionsBX24 () {
 
           return new Promise((resolve, reject) => {
+              if (!window.BX24) {
+                reject ("BX24 not defined!");
+              }
               BX24.callMethod(
                   'entity.item.get',
                   {
@@ -141,6 +156,10 @@
       updateActionBX24 (action) {
 
           return new Promise((resolve, reject) => {
+
+            if (!window.BX24) {
+                reject ("BX24 not defined!");
+              }
               BX24.callMethod('entity.item.update', {
                   ENTITY: 'action',
                   ID: action.id,
