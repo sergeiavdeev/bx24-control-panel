@@ -69,7 +69,7 @@
         e.dataTransfer.effectAllowed="move";
         e.dataTransfer.dropEffect = "move";
 
-        return true;
+        return;
       },
       dragOver (e) {
 
@@ -81,7 +81,7 @@
 
         var id = e.dataTransfer.getData("text");
         this.$emit('drag', {from: id, to: this.action.id});
-        return true;
+        return;
       },
       dragEnd (e) {
 
