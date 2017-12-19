@@ -3,7 +3,7 @@
     <v-card-actions :class="action.color + ' ' + action.subColor">
       <div class="title">{{action.name}}</div>
       <v-spacer></v-spacer>
-      <v-btn icon @click.stop="$emit('remove', action.id)"  v-show="isAdmin" >
+      <v-btn icon @click.stop="deleting = true"  v-show="isAdmin" >
         <v-icon>clear</v-icon>
       </v-btn>
       <v-btn icon @click.stop="openEdit()"  v-show="isAdmin" >
@@ -14,6 +14,7 @@
       <div class="body-1">{{action.describe}}</div>
     </v-card-text>
     <action-form v-if="edit" :action="action" v-on:close="edit = false" v-on:save="update"></action-form>
+    <accept-form v-if="deleting" v-on:close="deleting = false" v-on:delete="deleteAction()"></accept-form>
   </v-card>
   <v-card v-else-if="!action.active&&isAdmin" height="180px" flat hover @click.native.stop="openEdit()" @dragend="dragEnd($event)" @drop="drop($event)" @dragover = "dragOver($event)">
     <v-card-text>
@@ -28,11 +29,13 @@
 <script>
 
   import actionForm from './ActionForm';
+  import acceptForm from './AcceptForm';
 
   export default {
     data () {
       return {
-        edit: false
+        edit: false,
+        deleting: false
       }
     },
     props: [
@@ -63,6 +66,10 @@
         this.$emit('update', action);
         this.edit = false;
       },
+      deleteAction () {
+        this.$emit('remove', this.action.id);
+        this.deleting = false;
+      },
       dragStart (e) {
 
         e.dataTransfer.setData("text", this.action.id);
@@ -88,7 +95,8 @@
       }
     },
     components: {
-      actionForm
+      actionForm,
+      acceptForm
     }
   }
 </script>
