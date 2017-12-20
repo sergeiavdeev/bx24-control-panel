@@ -3,9 +3,9 @@ import App from './Install.vue'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.css'
 
-Vue.use(Vuetify)
+Vue.use(Vuetify);
 
 new Vue({
-    el: '#app',
-    render: h => h(App)
+  el: '#app',
+  render: h => h(App)
 });
