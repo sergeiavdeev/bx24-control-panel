@@ -36,10 +36,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
-        loader: 'file-loader',
-        options: {
-          objectAssign: 'Object.assign'
-        }
+        loader: 'file-loader'
       },
       {
         test: /\.css$/,
