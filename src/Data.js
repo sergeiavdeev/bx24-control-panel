@@ -6,7 +6,7 @@ export default[
     describe: "Describe 1",
     color: "",
     subColor: "",
-    url: "http://pecom.ru"
+    url: ""
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ export default[
     describe: "Describe 2",
     color: "",
     subColor: "",
-    url: "http://ya.ru"
+    url: ""
   },
   {
     id: 3,
