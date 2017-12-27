@@ -1,6 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const ZipWebpackPlugin = require('zip-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -92,6 +93,12 @@ if (process.env.NODE_ENV === 'production') {
           return content.toString().replace("/dist", "");
         }
       }
-    ])
+    ]),
+    new ZipWebpackPlugin({
+      path: path.resolve(__dirname, './dist'),
+      filename: 'bx24-control-panel.zip',
+      pathPrefix: './js',
+      include: [/\.(js|html)$/]
+    })
   ])
 }
