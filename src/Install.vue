@@ -130,11 +130,11 @@
               NAME: 'Action',
               PROPERTY_VALUES: {
                 active: true,
-                name: "Яндекс",
-                describe: "Перейти на Яндекс",
+                name: "1С Битрикс",
+                describe: "Перейти на Битрикс",
                 color: "yellow",
                 subColor: "",
-                url: "http://yandex.ru"
+                url: "https://www.1c-bitrix.ru/"
               },
               SECTION: 0
             }
@@ -148,11 +148,11 @@
               NAME: 'Action',
               PROPERTY_VALUES: {
                 active: true,
-                name: "ПЭК",
-                describe: "Перейти на pecom.ru",
+                name: "Закладка 2",
+                describe: "Перейти на ...",
                 color: "blue",
                 subColor: "",
-                url: "http://pecom.ru"
+                url: "http://"
               },
               SECTION: 0
             }
