@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -7,8 +8,8 @@ module.exports = {
     install: './src/install.js'
   },
   output: {
-    path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
+    path: path.resolve(__dirname, './dist/js'),
+    publicPath: '/dist/js/',
     filename: '[name].js'
   },
   resolve: {
@@ -59,7 +60,7 @@ module.exports = {
 }
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map'
+  module.exports.devtool = '';
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
@@ -75,6 +76,22 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
-    })
+    }),
+    new CopyWebpackPlugin([
+      {
+        from: 'index.html',
+        to: path.resolve(__dirname, './dist'),
+        transform: function (content, path) {
+          return content.toString().replace("/dist", "");
+        }
+      },
+      {
+        from: 'install.html',
+        to: path.resolve(__dirname, './dist'),
+        transform: function (content, path) {
+          return content.toString().replace("/dist", "");
+        }
+      }
+    ])
   ])
 }
