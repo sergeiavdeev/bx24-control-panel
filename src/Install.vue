@@ -24,19 +24,10 @@
         this.installing = false;
         return;
       }
-      this.install()
-        .then(() => {
-          this.text = "Установка завершена";
-          this.installing = false;
-          BX24.installFinish();
-        })
-        .catch((err) => {
-          this.text = err.error_description;
-          this.installing = false;
-        });
+      this.install();
     },
     methods: {
-      install() {
+      _install() {
 
         var actions = [
           {
@@ -352,6 +343,26 @@
             true
           );
         });
+      },
+      install() {
+
+        BX24.callMethod('entity.delete',
+          {
+            'ENTITY': 'action'
+          },
+          (result) => {
+
+            this._install()
+              .then(() => {
+                this.text = "Установка завершена";
+                this.installing = false;
+                BX24.installFinish();
+              })
+              .catch((err) => {
+                this.text = err[0].error_description;
+                this.installing = false;
+              });
+          });
       }
     }
   }

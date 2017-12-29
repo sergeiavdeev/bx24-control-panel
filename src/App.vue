@@ -32,7 +32,6 @@
       if (window.BX24) {
         BX24.init(() => {
           this.isAdmin = BX24.isAdmin();
-          console.log(BX24.isAdmin());
         });
       }
 
@@ -50,7 +49,6 @@
               url: el.PROPERTY_VALUES.url
             });
           });
-          console.log(data);
         })
         .catch((err) => {
           this.actions = require('./Data').default;
@@ -68,9 +66,6 @@
             action.color = "";
             action.subColor = "";
             this.updateActionBX24(action)
-              .then((res) => {
-                console.log(res);
-              })
               .catch((err) => {
                 console.log(err);
               });
@@ -80,9 +75,6 @@
       updateAction(action) {
 
         this.updateActionBX24(action)
-          .then((res) => {
-            console.log(res);
-          })
           .catch((err) => {
             console.log(err);
           });
@@ -99,8 +91,6 @@
         })
       },
       drag(src) {
-
-        console.log('Притащили ' + src.from + " в " + src.to);
 
         var idFrom = src.from;
         var idTo = src.to;
@@ -128,9 +118,6 @@
         }
 
         this.updateActionBX24(actionTo)
-          .then((res) => {
-            console.log(res);
-          })
           .catch((err) => {
             console.log(err);
           });
@@ -143,9 +130,6 @@
         actionFrom.subColor = "";
 
         this.updateActionBX24(actionFrom)
-          .then((res) => {
-            console.log(res);
-          })
           .catch((err) => {
             console.log(err);
           });
@@ -191,7 +175,6 @@
               SECTION: 0
             },
             function (result) {
-              //console.log(result);
               resolve(result);
             });
         });
